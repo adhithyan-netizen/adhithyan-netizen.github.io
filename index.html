@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adhithyan V J | Portfolio</title><!--[span_0](start_span)[span_0](end_span) -->
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Times New Roman:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050816;         
+      --text: #ffffff;       
+      --text-dim: #aaa6c3;   
+      --gold: #915EFF;       
+      --border: #151030;     
+      --border-gold: rgba(145, 94, 255, 0.3);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      
+      /* Glowing orbs + Wakandan-style geometric diamond weave */
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(145, 94, 255, 0.15), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(145, 94, 255, 0.12), transparent 40%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23915EFF' fill-opacity='0.07'%3E%3Cpath d='M12 0l12 12-12 12L0 12zM6 12l6 6 6-6-6-6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      
+      color: var(--text);
+      line-height: 1.7;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .serif, .logo {
+      font-family: 'Times New Roman', serif;
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    /* Header & Navigation */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 4rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+    }
+    
+    .logo { font-size: 1.5rem; font-weight: 400; letter-spacing: 1px; }
+    
+    nav { display: flex; gap: 2.5rem; }
+    nav a { 
+      color: var(--text); text-decoration: none; font-size: 0.85rem; 
+      text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s; 
+    }
+    nav a:hover { color: var(--gold
+); }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+
+      /* Split About/Hero Section */
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-bottom: 6rem;
+      padding: 3rem 0 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .about-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border: 1px solid var(--border-gold);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      transition: transform 0.8s ease;
+    }
+    
+    .about-image:hover {
+      transform: scale(1.02);
+    }
+
+    .about-text h1 {
+      font-size: 4.5rem;
+      line-height: 1.05;
+      margin: 0 0 1rem 0;
+      color: var(--text);
+    }
+    
+    .about-text h1 span {
+      color: var(--gold);
+        letter-spacing: 2px:
+    }
+
+    .status-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    /* Resume Button */
+    .resume-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 12px 30px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.4s ease;
+      background: transparent;
+    }
+    
+    .resume-btn:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    @media (max-width: 768px) {
+      .about-split { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    /* Stats Banner */
+    .stats-banner {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; margin-bottom: 6rem;
+    }
+    .stat-value { font-size: 2.5rem; font-family: 'Times New Roman', serif; color: var(--gold); margin-bottom: 0.5rem; }
+    .stat-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 2px; }
+
+    /* Standardized Sections */
+    section { margin-bottom: 8rem; }
+    .section-header {
+      display: flex; align-items: baseline; border-bottom: 1px solid var(--border-gold);
+      padding-bottom: 1rem; margin-bottom: 3rem;
+    }
+    .section-num { font-size: 1rem; color: var(--gold); margin-right: 1.5rem; font-family: 'Inter', sans-serif; letter-spacing: 2px; }
+    h2 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
+
+    
+
+    /* 1. Photography Scroll */
+    .gallery-container {
+      display: flex; overflow-x: auto; gap: 2rem; padding-bottom: 2rem;
+      scrollbar-width: thin; scrollbar-color: var(--gold) var(--border);
+    }
+    .gallery-container::-webkit-scrollbar { height: 4px; }
+    .gallery-container::-webkit-scrollbar-thumb { background: var(--gold); }
+    .gallery-container::-webkit-scrollbar-track { background: var(--border); }
+    .photo-card { min-width: 450px; height: 600px; border: 1px solid var(--border); overflow: hidden; position: relative; }
+    .photo-card img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .photo-card:hover img { transform: scale(1.05) translateX(-15px); }
+
+    /* 2. Engineer Interactive Cards */
+    .engineer-cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .expandable-pane {
+      border: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      max-height: 105px; /* Crops perfectly right below the title */
+      overflow: hidden;
+      position: relative;
+      background: #050505;
+      transition: max-height 1s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s;
+    }
+    
+    .expandable-pane h3 {
+      margin: 0 0 3rem 0; /* Creates space between the title and the content */
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    
+    .expandable-pane::after {
+      content: 'Hover to expand file ↓';
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: opacity 0.4s;
+    }
+    
+    .expandable-pane:hover {
+      max-height: 3000px;
+      border-color: var(--gold);
+    }
+    
+    .expandable-pane:hover::after { opacity: 0; pointer-events: none; }
+
+    /* Lists inside the Engineer Cards */
+    .experience-block {
+      margin-bottom: 2.5rem;
+      padding-left: 1.5rem;
+      border-left: 1px solid var(--border-gold);
+    }
+    .experience-block h4 { margin: 0 0 0.5rem 0; font-size: 1.3rem; color: var(--text); font-family: 'Inter', sans-serif;}
+    .meta { font-size: 0.85rem; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; display: block; }
+    
+    ul.clean-list { list-style: none; padding: 0; margin: 0; }
+    ul.clean-list li { padding: 1rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; font-weight: 300; }
+    ul.clean-list li:last-child { border-bottom: none; }
+    ul.clean-list strong { color: var(--gold); font-weight: 400; margin-right: 0.5rem; }
+
+    /* 3. Author Layout */
+    .author-grid {
+      display: grid; grid-template-columns: 300px 1fr; gap: 4rem; align-items: center;
+      background: #050505; border: 1px solid var(--border); padding: 4rem;
+    }
+    .real-book-cover { width: 100%; border: 1px solid var(--border-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.8); transition: transform 0.5s; }
+    .real-book-cover:hover { transform: scale(1.03); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 4rem 0; text-align: center; }
+    .contact-links a { color: var(--gold); text-decoration: none; margin: 0 1rem; font-size: 1.1rem; transition: opacity 0.3s; }
+    .contact-links a:hover { opacity: 0.7; }
+    
+    @media (max-width: 768px) {
+      header { padding: 1.5rem 2rem; }
+      nav { display: none; }
+      .hero h1 { font-size: 3.5rem; }
+      .stats-banner { grid-template-columns: 1fr 1fr; }
+      .author-grid { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+      .photo-card { min-width: 300px; height: 400px; }
+      .expandable-pane::after { display: none; } /* Hide hover text on mobile */
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">VJ. Adhithyan</div><!--[span_1](start_span)[span_1](end_span) -->
+    <nav>
+      <a href="#photo">01 / Photo</a>
+      <a href="#eng">02 / Engineer</a>
+      <a href="#auth">03 / Author</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="about-split">
+      <!-- Left Column: Your Portrait/Image -->
+      <div>
+        <!-- Make sure to name your profile picture 'profile.jpg' and upload it with your other photos -->
+        <img src="HERO.jpg" alt="A. V J" class="about-image">
+      </div>
+
+      <!-- Right Column: Text & Resume Button -->
+      <div class="about-text">
+        <span class="status-label">— SYSTEMS – LIVE</span>
+        
+        <h1>Adhithyan. <span>V J</span></h1>
+        
+        <p style="font-family: 'Times New Roman', serif; font-size: 1.3rem; color: var(--gold); margin-bottom: 2rem; font-style: italic;">
+          "The Only Way, Is Through." <br> - Frost.R
+        </p>
+        
+        <p style="color: var(--text-dim); font-weight: 300; margin-bottom: 2.5rem; line-height: 1.8;">
+          As a Mechanical Engineering student at Saintgits College of Engineering, I am deeply passionate about pushing the boundaries of technology in automotive systems, aerospace, and thermodynamics. My engineering journey is driven by a relentless curiosity to design and optimize complex mechanical systems. Currently, I apply my theoretical knowledge to high-performance scenarios as a member of the Division of Braking for Madbolt Formula Racing, where I utilize tools like SolidWorks, ANSYS, and CFD to engineer precision components. I am also actively engaged with professional communities like SAEINDIA, IEI, and ISNT to stay at the forefront of industry advancements.
+My hands-on experience spans across multiple research and system development roles, notably as a System Development Engineer at Tessat. I have conceptualized and developed a diverse portfolio of advanced projects, ranging from thermal management systems for EV batteries and landslide rescue rovers to vacuum-integrated kinetic energy recovery systems. These endeavors have honed my skills in CAD, fluid dynamics, and machine design, allowing me to transform abstract concepts into tangible, functional prototypes that address pressing mechanical challenges.
+Innovation and intellectual property are at the core of my professional identity. I have successfully filed twelve patents spanning autonomous navigation, advanced energy storage, and safety apparatuses. Beyond technical research, I actively cultivate my leadership and organizational skills through roles such as Technical Team Member for TEDx Saintgits and Marketing Manager for Nk'26. I am eager to connect with fellow innovators and industry professionals as I continue to build solutions that drive engineering excellence forward.
+        </p>
+        
+        <!-- Paste your Google Docs link where it says YOUR_LINK_HERE -->
+        <a href="https://drive.google.com/file/d/1V1g38Sk77vEDE-LDRWGW8Nv1n_aD1U7A/view" target="_blank" class="resume-btn">↓ View Live Résumé</a>
+      </div>
+    </div>
+
+
+    <div class="stats-banner">
+      <div>
+        <div class="stat-value">14</div>
+        <div class="stat-label">Published Patents</div>
+      </div>
+      <div>
+        <div class="stat-value">02</div>
+        <div class="stat-label">Engineering Roles</div>
+      </div>
+      <div>
+        <div class="stat-value">01</div>
+        <div class="stat-label">Published Book</div>
+      </div>
+      <div>
+        <div class="stat-value">2026</div>
+        <div class="stat-label">Clearance Year</div>
+      </div>
+    </div>
+
+    <!-- 01 Photographer -->
+    <section id="photo">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>Photographer</h2>
+      </div>
+      
+      <div class="gallery-container">
+        <div class="photo-card"><img src="photo1.jpg" alt="Visual 1"></div>
+        <div class="photo-card"><img src="photo2.jpg" alt="Visual 2"></div>
+        <div class="photo-card"><img src="photo3.jpg" alt="Visual 3"></div>
+        <div class="photo-card"><img src="photo4.jpg" alt="Visual 4"></div>
+        <div class="photo-card"><img src="photo5.jpg" alt="Visual 5"></div>
+        <div class="photo-card"><img src="photo6.jpg" alt="Visual 6"></div>
+        <div class="photo-card"><img src="photo7.jpg" alt="Visual 7"></div>
+        <div class="photo-card"><img src="photo8.jpg" alt="Visual 8"></div>
+        <div class="photo-card"><img src="photo9.jpg" alt="Visual 9"></div>
+        <div class="photo-card"><img src="photo10.jpg" alt="Visual 10"></div>
+        <div class="photo-card"><img src="photo11.jpg" alt="Visual 11"></div>
+        <div class="photo-card"><img src="photo12.jpg" alt="Visual 12"></div>
+        <div class="photo-card"><img src="photo13.jpg" alt="Visual 13"></div>
+        <div class="photo-card"><img src="photo14.jpg" alt="Visual 14"></div>
+        <div class="photo-card"><img src="photo15.jpg" alt="Visual 15"></div>
+        <div class="photo-card"><img src="photo16.jpg" alt="Visual 16"></div>
+        <div class="photo-card"><img src="photo17.jpg" alt="Visual 17"></div>
+        <div class="photo-card"><img src="photo18.jpg" alt="Visual 18"></div>
+      </div>
+    </section>
+
+    <!-- 02 Engineer -->
+    <section id="eng">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>Engineer</h2>
+      </div>
+      
+      <div class="engineer-cards-container">
+        
+        <!-- Experience Card -->
+        <div class="expandable-pane">
+          <h3>Experience</h3><!--[span_3](start_span)[span_3](end_span) -->
+          <div class="pane-content">
+            <div class="experience-block">
+              <h4>○ System Development Engineer</h4><!--[span_4](start_span)[span_4](end_span) -->
+              <span class="meta">Tessat Space Ltd.</span><!--[span_5](start_span)[span_5](end_span) -->
+              <p>November 2024 - July 2025.<!--[span_6](start_span)[span_6](end_span) --></p>
+            </div>
+            <div class="experience-block">
+              <h4>○ Research Engineer</h4><!--[span_7](start_span)[span_7](end_span) -->
+              <span class="meta">Tessat Space Ltd.</span><!--[span_8](start_span)[span_8](end_span) -->
+              <p>October 2024 - November 2024.<!--[span_9](start_span)[span_9](end_span) --></p>
+            </div>
+            <div class="experience-block" style="margin-bottom: 0;">
+              <h4>○ Summer Intern</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">IIT GUWAHATI</span><!--[span_11](start_span)[span_11](end_span) -->
+              <p>1st of June 2026 - 30th of June 2026.
+            </div>
+            <div class="experience-block" style="margin-bottom: 0;">
+              <h4>○ Breaks Engineer</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">Madbolt Formula Racing</span><!--[span_11](start_span)[span_11](end_span) -->
+              <p>1st of January 2026 - present.
+            </div>
+            <div class="experience-block" style="margin-bottom: 0;">
+              <h4>○ Technical Divisions Engineer</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">TedX Saintgits</span><!--[span_11](start_span)[span_11](end_span) -->
+              <p>1st of January 2026 - present.
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects Card -->
+        <div class="expandable-pane">
+          <h3>Projects</h3>
+          <div class="pane-content">
+            <ul class="clean-list">
+               <!-- Replace these placeholders when you are ready to paste your projects -->
+               <li><strong>Project 01:</strong> [Advanced Multi Stage Biorefinery for the Valorization of Brown Seaweed: Integrating Hydrodynamic Cavitation and Hydrothermal Liquefaction for High Value Biocrude Extraction]</li>
+               <li><strong>Project 02:</strong> [Percutaneous Endovascular Regenerative Myoplasty with Optional Low Intensity Ultrasound Induced Procedural Analgesia]</li>
+               <li><strong>Project 03:</strong> [Comparative In silico Analysis of Huan Hemoglobin Subunit Alpha and Human Lysozyme C to evaluate the Evolutionary Relationship and Conservvation of 3D Structural Toplogy against Primary Sequence Divergence Using Computational Biology Tools]</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Patents Card -->
+        <div class="expandable-pane">
+          <h3>Patents</h3><!--[span_12](start_span)[span_12](end_span) -->
+          <div class="pane-content">
+            <ul class="clean-list">
+              <li><strong>Aerospace:</strong> Autonomous Inertial-Visual Mapping and Relative Positioning System for Extra-Terrestrial Exploratory Vehicles (202641017506)<!--[span_13](start_span)[span_13](end_span) --></li>
+              <li><strong>Aerospace:</strong> Twin Propulsion Mechanism With Pilot Incapacitation Response Protocol For Helicopters (202541072244)<!--[span_14](start_span)[span_14](end_span) --></li>
+              <li><strong>Aerospace:</strong> PERSEUS - Artificial Raincloud Stimulation Apparatus (202441043898)<!--[span_15](start_span)[span_15](end_span) --></li>
+              <li><strong>Energy:</strong> Vacuum-Integrated Carbon-Composite Flywheel Apparatus for Regenerative Kinetic Energy Recovery (202641018572)<!--[span_16](start_span)[span_16](end_span) --></li>
+              <li><strong>Energy:</strong> Multiphase Internal Cooling System for High Volume Lithium-Ion Batteries (202641003294)<!--[span_17](start_span)[span_17](end_span) --></li>
+              <li><strong>Energy:</strong> Multi-Layered Composite Type Hydrogen Storage System for High-Pressure Combustion (202641017266)<!--[span_18](start_span)[span_18](end_span) --></li>
+              <li><strong>Automotive:</strong> Engine-Integrated Crankcase Pressure Energy Recovery System Using Micro-Turbine (202641027022)<!--[span_19](start_span)[span_19](end_span) --></li>
+              <li><strong>Automotive:</strong> Active Collision Alert System For Autonomous And Automatic Transmission Vehicles (202641003335)<!--[span_20](start_span)[span_20](end_span) --></li>
+              <li><strong>Automotive:</strong> Anisotropic Architected Cellular Metamaterials for Angle-Selective Impact Attenuation (202641071474)<!--[span_21](start_span)[span_21](end_span) --></li>
+              <li><strong>Automotive:</strong> Synchronous Multivariable Adaptive Real Time Damping (202641071476)<!--[span_22](start_span)[span_22](end_span) --></li>
+              <li><strong>Biomedical:</strong> Self-Modulating Mechanical Hinge utilizing Dilatant Fluid Dynamics for Pathological Tremor Attenuation (202641027023)<!--[span_23](start_span)[span_23](end_span) --></li>
+              <li><strong>Biomedical:</strong> Self-Administering Fracture Immobilizer With Vascular Rupture Management Protocol (202541099325)<!--[span_24](start_span)[span_24](end_span) --></li>
+              <li><strong>Industrial:</strong> Hybrid Opto-Acoustic System for Concurrent Volumetric Defect Detection and Surface Metrology (202641017336)<!--[span_25](start_span)[span_25](end_span) --></li>
+              <li><strong>Industrial:</strong> High-Fidelity Geometric Scene Synthesis for Real-Time Path Planning (202641027024)<!--[span_26](start_span)[span_26](end_span) --></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+
+<!-- Experience Card -->
+        <div class="expandable-pane">
+          <h3>Software Tools</h3><!--[span_3](start_span)[span_3](end_span) -->
+          <div class="pane-content">
+            <div class="Tools-block">
+              <h4>○ Solidworks</h4><!--[span_4](start_span)[span_4](end_span) -->
+              <span class="meta">       Advanced proficiency</span><!--[span_5](start_span)[span_5](end_span) -->
+             </div>
+            <div class="Tools-block">
+              <h4>○ SolidEdge</h4><!--[span_7](start_span)[span_7](end_span) -->
+              <span class="meta">       Advanced Proficiency</span><!--[span_8](start_span)[span_8](end_span) -->
+              </div>
+            <div class="Tools-block" style="margin-bottom: 0;">
+              <h4>○ Ansys Fluent</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">       Proficient</span><!--[span_11](start_span)[span_11](end_span) -->
+               </div>
+            <div class="Tools-block" style="margin-bottom: 0;">
+              <h4>○ Ansys Mechanical</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">       Advanced Proficiency</span><!--[span_11](start_span)[span_11](end_span) -->
+            </div>
+            <div class="Tools-block" style="margin-bottom: 0;">
+              <h4>○ Comsol Multiphysics</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">       Intermediate</span><!--[span_11](start_span)[span_11](end_span) -->
+            </div>
+            <div class="Tools-block" style="margin-bottom: 0;">
+              <h4>○ Pymol</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">Intermediate</span><!--[span_11](start_span)[span_11](end_span) -->
+            </div>
+            <div class="Tools-block" style="margin-bottom: 0;">
+              <h4>○ MATlab</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">       Proficient</span><!--[span_11](start_span)[span_11](end_span) -->
+            </div>
+            <div class="Tools-block" style="margin-bottom: 0;">
+              <h4>○ AutoCAD</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">       Advanced Proficiency</span><!--[span_11](start_span)[span_11](end_span) -->
+            </div>
+            <div class="Tools-block" style="margin-bottom: 0;">
+              <h4>○ Simulink</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">       Intermediate</span><!--[span_11](start_span)[span_11](end_span) -->
+            </div>
+            <div class="Tools-block" style="margin-bottom: 0;">
+              <h4>○ C Program</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">       Proficient</span><!--[span_11](start_span)[span_11](end_span) -->
+            </div>
+            <div class="Tools-block" style="margin-bottom: 0;">
+              <h4>○ Arduino IDE</h4><!--[span_10](start_span)[span_10](end_span) -->
+              <span class="meta">       Intermediate</span><!--[span_11](start_span)[span_11](end_span) -->
+            </div>
+          </div>
+        </div>
+
+    </section>
+
+    <!-- 03 Author -->
+    <section id="auth">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>Author</h2>
+      </div>
+      
+      <div class="author-grid">
+        <div>
+          <img src="book-cover.jpg" alt="Book Cover" class="real-book-cover">
+        </div>
+        <div>
+          <h3 style="margin: 0 0 1rem 0; font-size: 2rem;">Oru Manjukalathinte Ormaykk</h3>
+          <p style="color: var(--text-dim); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+            Published by Old Library Publications<br>
+            25th of April 2025.
+          </p>
+          <p>A literary exploration to the line of life and death. This work stands as a testament to the perspective of identity and self that I've came over in my years.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h2 style="margin-bottom: 1rem;">Wanna Catch Up.?</h2>
+    <p style="color: var(--text-dim); margin-bottom: 2rem;"> Adhithyan V J.<br> Varakukalayil, Vakathanam, Kottayam, Kerala, India</p><!--[span_27](start_span)[span_27](end_span) -->
+    <div class="contact-links">
+      <a href="mailto:postboxno.1128@gmail.com">Email</a><!--[span_28](start_span)[span_28](end_span) -->
+      <a href="tel:7907160446">Phone</a><!--[span_29](start_span)[span_29](end_span) -->
+      <a href="https://www.linkedin.com/in/adhithyan-vj-4a10192a4?utm_source=share_via&utm_content=profile&utm_medium=member_android">Linkedin</a>
+    </div>
+    <p style="margin-top: 4rem; font-size: 0.75rem; color: var(--border);">© 2026 ADHITHYAN V J. ALL RIGHTS RESERVED.</p><!--[span_30](start_span)[span_30](end_span) -->
+  </footer>
+
+</body>
+</html>
