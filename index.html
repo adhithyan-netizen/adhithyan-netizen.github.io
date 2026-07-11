@@ -155,17 +155,62 @@
 
     
 
-    /* 1. Photography Scroll */
+       /* 1. Photography Scroll (Upgraded Carousel) */
     .gallery-container {
-      display: flex; overflow-x: auto; gap: 2rem; padding-bottom: 2rem;
-      scrollbar-width: thin; scrollbar-color: var(--gold) var(--border);
+      display: flex; 
+      overflow-x: auto; 
+      gap: 2rem; 
+      padding: 2rem calc(50vw - 225px); /* Adds padding so the first and last images can reach the exact center */
+      padding-bottom: 4rem;
+      scrollbar-width: thin; 
+      scrollbar-color: var(--gold) var(--border);
+      scroll-snap-type: x mandatory; /* Forces the scroll to "snap" to images */
+      scroll-behavior: smooth;
+      align-items: center; /* Keeps them vertically centered */
     }
+    
     .gallery-container::-webkit-scrollbar { height: 4px; }
     .gallery-container::-webkit-scrollbar-thumb { background: var(--gold); }
     .gallery-container::-webkit-scrollbar-track { background: var(--border); }
-    .photo-card { min-width: 450px; height: 600px; border: 1px solid var(--border); overflow: hidden; position: relative; }
-    .photo-card img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    .photo-card:hover img { transform: scale(1.05) translateX(-15px); }
+    
+    .photo-card { 
+      min-width: 400px; 
+      height: 500px; 
+      border: 1px solid var(--border); 
+      overflow: hidden; 
+      position: relative; 
+      scroll-snap-align: center; /* Tells it to snap to the center of the screen */
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      opacity: 0.5; /* Dims out the side images */
+    }
+    
+    .photo-card img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: all 0.5s ease; 
+    }
+
+    /* The "Active" Class (When it hits the center) */
+    .photo-card.active {
+      min-width: 650px; /* Gets wider */
+      height: 650px; /* Gets taller */
+      border: 1px solid var(--gold);
+      box-shadow: 0 15px 50px rgba(145, 94, 255, 0.3); /* Wakandan purple glow */
+      opacity: 1; /* Fully lit up */
+      z-index: 10;
+    }
+
+    .photo-card.active img {
+      object-fit: contain; /* Un-crops the image to show its actual completeness */
+      background: #020202; /* Fills empty space with dark background */
+    }
+
+    @media (max-width: 768px) {
+      .gallery-container { padding: 2rem calc(50vw - 150px); }
+      .photo-card { min-width: 250px; height: 350px; }
+      .photo-card.active { min-width: 350px; height: 400px; }
+    }
 
     /* 2. Engineer Interactive Cards */
     .engineer-cards-container {
@@ -315,13 +360,13 @@ Innovation and intellectual property are at the core of my professional identity
       </div>
       
       <div class="gallery-container">
-        <div class="photo-card"><img src="webport/photo1.jpg" alt="Visual 1"></div>
+        <div class="photo-card"><img src="webport/photo1.jpeg" alt="Visual 1"></div>
         <div class="photo-card"><img src="webport/photo2.jpg" alt="Visual 2"></div>
         <div class="photo-card"><img src="webport/photo3.jpg" alt="Visual 3"></div>
         <div class="photo-card"><img src="webport/photo4.jpg" alt="Visual 4"></div>
         <div class="photo-card"><img src="webport/photo5.jpg" alt="Visual 5"></div>
         <div class="photo-card"><img src="webport/photo6.jpg" alt="Visual 6"></div>
-        <div class="photo-card"><img src="wwebport/photo7.jpg" alt="Visual 7"></div>
+        <div class="photo-card"><img src="webport/photo7.jpg" alt="Visual 7"></div>
         <div class="photo-card"><img src="webport/photo8.jpg" alt="Visual 8"></div>
         <div class="photo-card"><img src="webport/photo9.jpg" alt="Visual 9"></div>
         <div class="photo-card"><img src="webport/photo10.jpg" alt="Visual 10"></div>
@@ -477,7 +522,7 @@ Innovation and intellectual property are at the core of my professional identity
       
       <div class="author-grid">
         <div>
-          <img src="book-cover.jpg" alt="Book Cover" class="real-book-cover">
+          <img src="webport/book-cover.jpeg" alt="Book Cover" class="real-book-cover">
         </div>
         <div>
           <h3 style="margin: 0 0 1rem 0; font-size: 2rem;">Oru Manjukalathinte Ormaykk</h3>
@@ -501,6 +546,33 @@ Innovation and intellectual property are at the core of my professional identity
     </div>
     <p style="margin-top: 4rem; font-size: 0.75rem; color: var(--border);">© 2026 ADHITHYAN V J. ALL RIGHTS RESERVED.</p><!--[span_30](start_span)[span_30](end_span) -->
   </footer>
+ <script>
+    const gallery = document.querySelector('.gallery-container');
+    const cards = document.querySelectorAll('.photo-card');
 
+    function checkCenter() {
+      // Calculate the exact center line of the scrolling container
+      let centerPos = gallery.scrollLeft + (gallery.clientWidth / 2);
+      
+      cards.forEach(card => {
+        // Calculate the center of each individual card
+        let cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+        // Find the distance between the card's center and the screen's center
+        let dist = Math.abs(centerPos - cardCenter);
+        
+        // If the card is closest to the center, make it active!
+        if (dist < card.offsetWidth / 2) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    }
+
+    // Run the math every time the user scrolls
+    gallery.addEventListener('scroll', checkCenter);
+    // Run it once immediately when the page loads
+    window.addEventListener('load', checkCenter);
+  </script>
 </body>
 </html>
